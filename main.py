@@ -25,3 +25,20 @@ TEXTS = [
     in modern oceans. Other fish such as paddlefish,
     garpike and stingray are also present.'''
 ]
+uzivatele = {
+    "bob" : "123",
+    "ann" : "pass123",
+    "mike" : "password123",
+    "liz" : "pass123"
+}
+
+jmeno = input("Zadej uživatelské jméno: ")
+heslo = input("Zadej heslo: ")
+
+if jmeno in uzivatele and uzivatele[jmeno] == heslo:
+    print(f"Ahoj {jmeno}! Pusťme se do práce.")
+else:
+    print("Kombinace jména a hesla je nesprávná. Ukončuji program.")
+    quit()
+
+
