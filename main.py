@@ -32,13 +32,23 @@ uzivatele = {
     "liz" : "pass123"
 }
 
-jmeno = input("Zadej uživatelské jméno: ")
-heslo = input("Zadej heslo: ")
+#jmeno = input("Zadej uživatelské jméno: ")
+#heslo = input("Zadej heslo: ")
 
-if jmeno in uzivatele and uzivatele[jmeno] == heslo:
-    print(f"Ahoj {jmeno}! Pusťme se do práce.")
-else:
-    print("Kombinace jména a hesla je nesprávná. Ukončuji program.")
+#if jmeno in uzivatele and uzivatele[jmeno] == heslo:
+#    print(f"Ahoj {jmeno}! Pusťme se do práce.")
+#else:
+#    print("Kombinace jména a hesla je nesprávná. Ukončuji program.")
+#    quit()
+
+seznam_textu = dict(enumerate(TEXTS,1))
+
+zvoleny_text = input("Vyber si číslo textu od 1 do 3.")
+
+if not zvoleny_text.isdigit():
+    print("Neplatný znak. Ukončuji program.")
     quit()
-
+elif int(zvoleny_text) not in range(1,4):
+    print("Zvolené číslo neodpovídá zadanému rozsahu. Ukončuji program.")
+    quit()
 
