@@ -43,12 +43,64 @@ uzivatele = {
 
 seznam_textu = dict(enumerate(TEXTS,1))
 
-zvoleny_text = input("Vyber si číslo textu od 1 do 3.")
+cislo_textu = input("Vyber si číslo textu od 1 do 3.")
 
-if not zvoleny_text.isdigit():
+if not cislo_textu.isdigit():
     print("Neplatný znak. Ukončuji program.")
     quit()
-elif int(zvoleny_text) not in range(1,4):
+elif int(cislo_textu) not in range(1,4):
     print("Zvolené číslo neodpovídá zadanému rozsahu. Ukončuji program.")
     quit()
 
+zvoleny_text = seznam_textu[int(cislo_textu)]
+
+zvoleny_text = zvoleny_text.split()
+
+pocet_slov = len(zvoleny_text)
+print(pocet_slov)
+
+pocet_title_slov = 0
+
+for title_slovo in zvoleny_text:
+    if title_slovo[0].isupper():
+        pocet_title_slov += 1
+
+print(pocet_title_slov)
+
+pocet_velkych_slov = 0
+
+for velke_slovo in zvoleny_text:
+    if velke_slovo.isupper():
+        pocet_velkych_slov += 1
+
+print(pocet_velkych_slov)
+
+pocet_malych_slov = 0
+
+for male_slovo in zvoleny_text:
+    if male_slovo.islower():
+        pocet_malych_slov += 1
+
+print (pocet_malych_slov)
+
+pocet_cisel = 0
+soucet_cisel = 0
+
+for cislo in zvoleny_text:
+    if cislo.isdigit():
+        pocet_cisel += 1
+        soucet_cisel += int(cislo)
+
+print(pocet_cisel)
+print(soucet_cisel)
+
+cetnost = {}
+
+for slovo in zvoleny_text:
+    delka = len(slovo)
+    if delka in cetnost:
+        cetnost[delka] += 1
+    else:
+        cetnost[delka] = 1
+
+print(sorted(cetnost.items()))
