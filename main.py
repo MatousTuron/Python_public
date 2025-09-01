@@ -32,23 +32,23 @@ uzivatele = {
     "liz" : "pass123"
 }
 
-#jmeno = input("Zadej uživatelské jméno: ")
-#heslo = input("Zadej heslo: ")
+jmeno = input("Zadej uživatelské jméno: ")
+heslo = input("Zadej heslo: ")
 
-#if jmeno in uzivatele and uzivatele[jmeno] == heslo:
-#    print(f"Ahoj {jmeno}! Pusťme se do práce.")
-#else:
-#    print("Kombinace jména a hesla je nesprávná. Ukončuji program.")
-#    quit()
+if jmeno in uzivatele and uzivatele[jmeno] == heslo:
+    print(f"Ahoj {jmeno}! Pusťme se do práce.")
+else:
+    print("Kombinace jména a hesla je nesprávná. Ukončuji program.")
+    quit()
 
 seznam_textu = dict(enumerate(TEXTS,1))
 
-cislo_textu = input("Vyber si číslo textu od 1 do 3.")
+cislo_textu = input(f"Máme celkem {len(TEXTS)} texty k zanalyzování. Vyber si jeden z nich.")
 
 if not cislo_textu.isdigit():
     print("Neplatný znak. Ukončuji program.")
     quit()
-elif int(cislo_textu) not in range(1,4):
+elif int(cislo_textu) not in range(1,len(TEXTS)+1):
     print("Zvolené číslo neodpovídá zadanému rozsahu. Ukončuji program.")
     quit()
 
@@ -57,7 +57,8 @@ zvoleny_text = seznam_textu[int(cislo_textu)]
 zvoleny_text = zvoleny_text.split()
 
 pocet_slov = len(zvoleny_text)
-print(pocet_slov)
+
+print(f"V textu je celkem {pocet_slov} slov.")
 
 pocet_title_slov = 0
 
@@ -65,7 +66,7 @@ for title_slovo in zvoleny_text:
     if title_slovo[0].isupper():
         pocet_title_slov += 1
 
-print(pocet_title_slov)
+print(f"Z toho jich {pocet_title_slov} začíná velkým písmenem.")
 
 pocet_velkych_slov = 0
 
@@ -73,7 +74,7 @@ for velke_slovo in zvoleny_text:
     if velke_slovo.isupper():
         pocet_velkych_slov += 1
 
-print(pocet_velkych_slov)
+print(f"{pocet_velkych_slov} slov je tvořeno pouze velkými písmeny.")
 
 pocet_malych_slov = 0
 
@@ -81,7 +82,7 @@ for male_slovo in zvoleny_text:
     if male_slovo.islower():
         pocet_malych_slov += 1
 
-print (pocet_malych_slov)
+print (f"{pocet_malych_slov} slov je naopak tvořeno pouze malými písmeny.")
 
 pocet_cisel = 0
 soucet_cisel = 0
@@ -91,16 +92,22 @@ for cislo in zvoleny_text:
         pocet_cisel += 1
         soucet_cisel += int(cislo)
 
-print(pocet_cisel)
-print(soucet_cisel)
+print(f"V textu se nachází celkem {pocet_cisel} čísel.")
+print(f"Jejich součet je {soucet_cisel}.")
 
 cetnost = {}
 
 for slovo in zvoleny_text:
+    if not slovo[-1].isalnum():
+        slovo = slovo[:-1]
     delka = len(slovo)
     if delka in cetnost:
         cetnost[delka] += 1
     else:
         cetnost[delka] = 1
 
-print(sorted(cetnost.items()))
+print("Délka slova | Četnost")
+
+for delka, pocet in sorted(cetnost.items()):
+    print(f"{delka:>2}| {'*' * pocet} ({pocet})")
+    
